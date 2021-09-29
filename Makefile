@@ -11,19 +11,19 @@ FLAGS			=	-Wall -Wextra -Werror
 INCLUDES		=	minitalk.h
 OBJS_SERVER		=	$(SRCS_SERVER:.c=.o)
 OBJS_CLIENT		=	$(SRCS_CLIENT:.c=.o)
-OBJS_SERVER_B		=	$(SRCS_SERVER_B:.c=.o)
-OBJS_CLIENT_B		=	$(SRCS_CLIENT_B:.c=.o)
+OBJS_SERVER_B	=	$(SRCS_SERVER_B:.c=.o)
+OBJS_CLIENT_B	=	$(SRCS_CLIENT_B:.c=.o)
 
 .c.o: $(INCLUDE)
 	$(CC) $(FLAGS)  -c $< -o $@
+
+all : $(SERVER) $(CLIENT)
 
 $(SERVER): $(OBJS_SERVER) $(INCLUDE)
 	$(CC) $(OBJS_SERVER) -o $(SERVER)
 
 $(CLIENT): $(OBJS_CLIENT) $(INCLUDE)
 	$(CC) $(OBJS_CLIENT) -o $(CLIENT)
-
-all : $(SERVER) $(CLIENT)
 
 $(SERVER_BONUS): $(OBJS_SERVER_B) $(INCLUDE)
 	$(CC) $(OBJS_SERVER_B) -o $(SERVER_BONUS)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfornio <lfornio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 10:23:14 by lfornio           #+#    #+#             */
-/*   Updated: 2021/09/29 12:20:53 by lfornio          ###   ########.fr       */
+/*   Created: 2021/09/29 12:55:22 by lfornio           #+#    #+#             */
+/*   Updated: 2021/09/29 12:56:19 by lfornio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	print_signal(int signum, siginfo_t *sig, void *context)
 	static int	rank = 128;
 
 	(void)context;
+	(void)sig;
 	if (rank > 0)
 	{
 		if (signum == SIGUSR1)
@@ -27,10 +28,7 @@ void	print_signal(int signum, siginfo_t *sig, void *context)
 	if (rank == 0)
 	{
 		if (ch == 0)
-		{
 			write(1, "\n", 1);
-			kill(sig->si_pid, SIGUSR1);
-		}
 		write(1, &ch, 1);
 		ch = 0;
 		rank = 128;

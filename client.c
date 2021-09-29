@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfornio <lfornio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 10:23:31 by lfornio           #+#    #+#             */
-/*   Updated: 2021/09/29 12:46:23 by lfornio          ###   ########.fr       */
+/*   Created: 2021/09/29 12:56:40 by lfornio           #+#    #+#             */
+/*   Updated: 2021/09/29 12:57:13 by lfornio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,6 @@ static void	send_str(t_pid pid, char *str)
 	}
 }
 
-static void	print_sigak(int signum)
-{
-	if (signum == SIGUSR1)
-	{
-		ft_putstr("\033[32mMessage received\033[0m\n");
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_pid	pid;
@@ -76,7 +68,6 @@ int	main(int argc, char **argv)
 			ft_putstr("Invalid PID\n");
 		else
 		{
-			signal(SIGUSR1, print_sigak);
 			pid = (t_pid)ft_atoi(argv[1]);
 			send_str(pid, argv[2]);
 		}
