@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   func.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfornio <lfornio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 08:34:33 by lfornio           #+#    #+#             */
-/*   Updated: 2021/09/27 14:07:40 by lfornio          ###   ########.fr       */
+/*   Created: 2021/09/28 12:05:53 by lfornio           #+#    #+#             */
+/*   Updated: 2021/09/29 09:44:51 by lfornio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "minitalk.h"
+
+void	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0')
+		{
+			write(1, &s[i], 1);
+			i++;
+		}
+	}
+}
 
 int	ft_atoi(const char *str)
 {
@@ -36,4 +51,44 @@ int	ft_atoi(const char *str)
 	}
 	n = n * b;
 	return (n);
+}
+
+static void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(t_pid n)
+{
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		n = -n;
+	}
+	if (n < 10)
+	{
+		ft_putchar((n + '0'));
+	}
+	else
+	{
+		ft_putnbr((n / 10));
+		ft_putchar((n % 10 + '0'));
+	}
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
 }
